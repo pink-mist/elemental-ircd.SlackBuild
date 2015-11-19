@@ -113,6 +113,7 @@ cp -a \
   doc/Tao-of-IRC.940110 doc/technical tools/README.mkpasswd \
   $PKG/usr/doc/$PRGNAM-$VERSION
 cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
+cat $CWD/README > $PKG/usr/doc/$PRGNAM-$VERSION/README
 
 # Copy rc.elemental-ircd into /etc/rc.d
 mkdir -p $PKG/etc/rc.d
@@ -125,7 +126,6 @@ cat $CWD/$PRGNAM.logrotate > $PKG/etc/logrotate.d/$PRGNAM.new
 # Copy the slack-desc (and a custom doinst.sh if necessary) into ./install
 mkdir -p $PKG/install
 cat $CWD/slack-desc > $PKG/install/slack-desc
-cat $CWD/doinst.sh > $PKG/install/doinst.sh
 
 # Make the package; be sure to leave it in $OUTPUT
 # If package symlinks need to be created during install *before*
