@@ -1,0 +1,9 @@
+/var/log/elemental-ircd {
+    daily
+    rotate 7
+    copytruncate
+    delaycompress
+    compress
+    notifempty
+    missingok
+}

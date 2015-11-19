@@ -1,0 +1,35 @@
+#!/bin/sh
+#
+# elemental-ircd startup script for Slackware
+
+ircd_start() {
+  echo "Starting elemental-ircd."
+  /usr/bin/ircd
+}
+
+ircd_stop() {
+  echo -n "Stopping elemental-ircd..."
+  killall ircd
+  echo " done."
+}
+
+ircd_restart() {
+  ircd_stop
+  sleep 1
+  ircd_start
+}
+
+case "$1" in
+  start)
+    ircd_start
+    ;;
+  stop)
+    ircd_stop
+    ;;
+  restart)
+    ircd_restart
+    ;;
+  *)
+    echo "Usage: $0 {start|stop|restart}"
+    exit 1
+esac
