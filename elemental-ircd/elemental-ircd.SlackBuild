@@ -30,6 +30,7 @@ TAG=${TAG:-_SBo}
 
 IRCD_UID=${IRCD_UID:-315}
 IRCD_GID=${IRCD_GID:-2}
+IRCD_UNAME=${IRCD_UNAME:-ircd}
 
 # Automatically determine the architecture we're building on:
 if [ -z "$ARCH" ]; then
@@ -123,9 +124,23 @@ cat $CWD/README > $PKG/usr/doc/$PRGNAM-$VERSION/README.SBo
 # Create /var/lib/elemental-ircd directory
 mkdir -p $PKG/var/lib/$PRGNAM
 
+# Create post-install script to set ircd as owner on /var directories
+mkdir -p $PKG/var/log/setup
+cat > $PKG/var/log/setup/setup.elemental-ircd <<END
+#!/bin/bash
+echo "Setting up ownership for elemental-ircd directories"
+useradd -u $IRCD_UID -g $IRCD_GID -d /var/lib/$PRGNAM $IRCD_UNAME
+chown $IRCD_UID:$IRCD_GID /var/run/$PRGNAM
+chown $IRDC_UID:$IRCD_GID /var/log/$PRGNAM
+chown $IRDC_UID:$IRCD_GID /var/lib/$PRGNAM
+chown $IRDC_UID:$IRCD_GID /var/state/$PRGNAM
+echo "elemental-ircd post-installation setup completed"
+END
+chmod 755 $PKG/var/log/setup/setup.elemental-ircd
+
 # Copy rc.elemental-ircd into /etc/rc.d
 mkdir -p $PKG/etc/rc.d
-cat $CWD/rc.$PRGNAM > $PKG/etc/rc.d/rc.$PRGNAM.new
+sed -e "s/@USER@/$IRCD_UNAME/" $CWD/rc.$PRGNAM > $PKG/etc/rc.d/rc.$PRGNAM.new
 
 # Copy logrotate script into /etc/logrotate.d
 mkdir -p $PKG/etc/logrotate.d

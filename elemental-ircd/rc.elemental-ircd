@@ -2,7 +2,7 @@
 #
 # elemental-ircd startup script for Slackware
 
-USER="ircd"
+USER="@USER@"
 
 ircd_start() {
   echo "Starting elemental-ircd."

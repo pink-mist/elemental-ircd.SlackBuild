@@ -15,8 +15,9 @@ The elemental-ircd will refuse to run as root, so you need to create a user
 for it:
     useradd -u 315 -g 2 -d /var/lib/elemental-ircd ircd
 By default we name the user `ircd` with UID 315, and put it in the daemon
-group (GID 2). If you want to give it a different name, you'll need to edit
-the `rc.elemental-ircd` accordingly.
+group (GID 2). If you want to give it a different name, uid or gid, you can
+give IRCD_UNAME=ircd IRCD_UID=315 IRCD_GID=2 different values when running the
+slackbuild script.
 
 Before starting the ircd, you'll need to create a configuration file for it.
 It should be named `/etc/elemental-ircd/ircd.conf`. In that directory there
