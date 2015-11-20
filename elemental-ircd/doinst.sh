@@ -23,4 +23,5 @@ preserve_perms() {
 
 preserve_perms etc/rc.d/rc.elemental-ircd.new
 config etc/logrotate.d/elemental-ircd.new
+config etc/elemental-ircd/ircd.motd.new
 

@@ -102,6 +102,8 @@ make install DESTDIR=$PKG
 
 # /usr/bin/mkpasswd already exists in expect, so rename this one
 mv $PKG/usr/bin/mkpasswd $PKG/usr/bin/ircd-mkpasswd
+# Rename /etc/elemental-ircd/ircd.motd to .new so we don't clobber it
+mv $PKG/etc/$PRGNAM/ircd.motd $PKG/etc/$PRGNAM/ircd.motd.new
 
 find $PKG -print0 | xargs -0 file | grep -e "executable" -e "shared object" | grep ELF \
   | cut -f 1 -d : | xargs strip --strip-unneeded 2> /dev/null || true
