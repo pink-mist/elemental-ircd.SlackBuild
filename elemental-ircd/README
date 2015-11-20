@@ -11,6 +11,18 @@ start/stop/restart, which you can call from your rc.local:
         /etc/rc.d/rc.elemental-ircd start
     fi
 
-Note: elemental-ircd comes with a binary called `/usr/bin/mkpasswd`, but this
-conflicts with `/usr/bin/mkpasswd` from expect, so the `mkpasswd` supplied by
-elemental-ircd is renamed to `ircd-mkpasswd` by the SlackBuild script.
+The elemental-ircd will refuse to run as root, so you need to create a user
+for it:
+    useradd -u 315 -g 2 -d /var/lib/elemental-ircd ircd
+By default we name the user `ircd` with UID 315, and put it in the daemon
+group (GID 2). If you want to give it a different name, you'll need to edit
+the `rc.elemental-ircd` accordingly.
+
+Before starting the ircd, you'll need to create a configuration file for it.
+It should be named `/etc/elemental-ircd/ircd.conf`. In that directory there
+is already an `example.conf` and a `reference.conf`.
+
+Note: elemental-ircd comes with a binary called `/usr/bin/mkpasswd`, which is
+used to create passwords for o-lines, but it creates a conflict with
+`/usr/bin/mkpasswd` from expect, so the `mkpasswd` supplied by elemental-ircd
+is renamed to `ircd-mkpasswd` by the SlackBuild script.
