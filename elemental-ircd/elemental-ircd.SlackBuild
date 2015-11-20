@@ -116,8 +116,9 @@ cp -a \
   doc/reference.charybdis.conf doc/reference.conf doc/server-version-info \
   doc/Tao-of-IRC.940110 doc/technical tools/README.mkpasswd \
   $PKG/usr/doc/$PRGNAM-$VERSION
+cp -a extensions/README $PKG/usr/doc/$PRGNAM-$VERSION/README.extensions
 cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
-cat $CWD/README > $PKG/usr/doc/$PRGNAM-$VERSION/README
+cat $CWD/README > $PKG/usr/doc/$PRGNAM-$VERSION/README.SBo
 
 # Create /var/lib/elemental-ircd directory
 mkdir -p $PKG/var/lib/$PRGNAM
