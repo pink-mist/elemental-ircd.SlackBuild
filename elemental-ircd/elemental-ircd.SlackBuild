@@ -149,6 +149,10 @@ sed -e "s/@USER@/$IRCD_UNAME/" $CWD/rc.$PRGNAM > $PKG/etc/rc.d/rc.$PRGNAM.new
 mkdir -p $PKG/etc/logrotate.d
 cat $CWD/$PRGNAM.logrotate > $PKG/etc/logrotate.d/$PRGNAM.new
 
+# Copy slackware-specific example conf to /etc/elemental-ircd
+mkdir -p $PKG/etc/$PRGNAM
+cat $CWD/slackware.conf > $PKG/etc/$PRGNAM/slackware.conf
+
 # Copy the slack-desc (and a custom doinst.sh if necessary) into ./install
 mkdir -p $PKG/install
 cat $CWD/slack-desc > $PKG/install/slack-desc
