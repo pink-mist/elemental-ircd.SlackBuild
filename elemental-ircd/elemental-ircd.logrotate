@@ -1,4 +1,4 @@
-/var/log/elemental-ircd {
+/var/log/elemental-ircd/* {
     daily
     rotate 7
     copytruncate
@@ -6,4 +6,10 @@
     compress
     notifempty
     missingok
+    postrotate
+        if [ -x /etc/rc.d/rc.elemental-ircd ]
+        then
+            /etc/rc.d/rc.elemental-ircd reload > /dev/null 2>&1
+        fi
+    endscript
 }
