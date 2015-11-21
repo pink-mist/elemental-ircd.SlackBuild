@@ -17,6 +17,17 @@ ircd_stop() {
   echo " done."
 }
 
+ircd_reload() {
+	echo -n "Sending signal to elemental-ircd to reload its configuration..."
+	if kill -CHLD $PID 2>/dev/null; then
+		kill -HUP $PID
+		echo " done."
+	else
+		echo "ircd doesn't seem to be running."
+		exit 1
+	fi
+}
+
 ircd_restart() {
   ircd_stop
   sleep 1
@@ -33,7 +44,10 @@ case "$1" in
   restart)
     ircd_restart
     ;;
+  reload)
+	ircd_reload
+	;;
   *)
-    echo "Usage: $0 {start|stop|restart}"
+    echo "Usage: $0 {start|stop|restart|reload}"
     exit 1
 esac
