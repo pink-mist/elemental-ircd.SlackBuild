@@ -1,3 +1,8 @@
+
+IRCD_UNAME="@UNAME@"
+IRCD_UID="@UID@"
+IRCD_GID="@GID@"
+
 config() {
   NEW="$1"
   OLD="$(dirname $NEW)/$(basename $NEW .new)"
@@ -25,3 +30,10 @@ preserve_perms etc/rc.d/rc.elemental-ircd.new
 config etc/logrotate.d/elemental-ircd.new
 config etc/elemental-ircd/ircd.motd.new
 
+# Set up user/group permissions
+groupadd -g $IRCD_GID $IRCD_UNAME 2>/dev/null
+useradd -u $IRCD_UID -g $IRCD_GID -d /var/lib/elemental-ircd $IRCD_UNAME 2>/dev/null
+chown $IRCD_UID:$IRCD_GID /var/run/elemental-ircd
+chown $IRDC_UID:$IRCD_GID /var/log/elemental-ircd
+chown $IRDC_UID:$IRCD_GID /var/lib/elemental-ircd
+chown $IRDC_UID:$IRCD_GID /var/state/elemental-ircd
