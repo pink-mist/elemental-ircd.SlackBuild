@@ -3,13 +3,16 @@ is a fork of the now-defunct ShadowIRCD and seeks to continue in the direction
 ShadowIRCD was headed.
 
 An `/etc/rc.d/rc.elemental-ircd` script is supplied which supports
-start/stop/restart, which you can call from your rc.local:
+start/stop/restart/reload, which you can call from your rc.local:
 
     # /etc/rc.d/rc.local
     # ==================
     if [ -x /etc/rc.d/rc.elemental-ircd ]; then
         /etc/rc.d/rc.elemental-ircd start
     fi
+
+The `reload` parameter will make an already running ircd reload its
+configuration file.
 
 The elemental-ircd will refuse to run as root, so you need to create a user
 for it:
