@@ -13,11 +13,15 @@ start/stop/restart, which you can call from your rc.local:
 
 The elemental-ircd will refuse to run as root, so you need to create a user
 for it:
-    useradd -u 315 -g 2 -d /var/lib/elemental-ircd ircd
-By default we name the user `ircd` with UID 315, and put it in the daemon
-group (GID 2). If you want to give it a different name, uid or gid, you can
-give IRCD_UNAME=ircd IRCD_UID=315 IRCD_GID=2 different values when running the
-slackbuild script.
+    groupadd -g 315 elemental-ircd
+    useradd -u 315 -g 315 -d /var/lib/elemental-ircd elemental-ircd
+By default we name the user `elemental-ircd` with UID 315, and put it in the
+`elemental-ircd` group (GID 315). If you want to give it a different name, uid
+or gid, you can give
+    IRCD_UNAME=elemental-ircd
+    IRCD_UID=315
+    IRCD_GID=315
+different values when running the slackbuild script.
 
 Before starting the ircd, you'll need to create a configuration file for it.
 It should be named `/etc/elemental-ircd/ircd.conf`. In that directory there

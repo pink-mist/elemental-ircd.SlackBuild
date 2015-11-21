@@ -29,8 +29,8 @@ BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 
 IRCD_UID=${IRCD_UID:-315}
-IRCD_GID=${IRCD_GID:-2}
-IRCD_UNAME=${IRCD_UNAME:-ircd}
+IRCD_GID=${IRCD_GID:-315}
+IRCD_UNAME=${IRCD_UNAME:-elemental-ircd}
 
 # Automatically determine the architecture we're building on:
 if [ -z "$ARCH" ]; then
@@ -131,6 +131,7 @@ mkdir -p $PKG/var/log/setup
 cat > $PKG/var/log/setup/setup.elemental-ircd <<END
 #!/bin/bash
 echo "Setting up ownership for elemental-ircd directories"
+groupadd -g $IRCD_GID $IRCD_UNAME
 useradd -u $IRCD_UID -g $IRCD_GID -d /var/lib/$PRGNAM $IRCD_UNAME
 chown $IRCD_UID:$IRCD_GID /var/run/$PRGNAM
 chown $IRDC_UID:$IRCD_GID /var/log/$PRGNAM
