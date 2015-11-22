@@ -136,7 +136,7 @@ cat $CWD/$PRGNAM.logrotate > $PKG/etc/logrotate.d/$PRGNAM.new
 
 # Copy slackware-specific example conf to /etc/elemental-ircd
 mkdir -p $PKG/etc/$PRGNAM
-set -e "s/@LIBDIRSUFFIX@/$LIBDIRSUFFIX/" \
+sed -e "s/@LIBDIRSUFFIX@/$LIBDIRSUFFIX/" \
     $CWD/slackware.conf > $PKG/etc/$PRGNAM/slackware.conf
 
 # Copy the slack-desc (and a custom doinst.sh if necessary) into ./install
