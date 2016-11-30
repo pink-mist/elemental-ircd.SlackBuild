@@ -3,7 +3,6 @@
 # Slackware build script for elemental-ircd
 
 # Copyright 2015 Andreas Guldstrand <andreas.guldstrand@gmail.com>
-# Copyright 2007-2015 Adis Nezirovic <adis_at_linux.org.ba> for doinst.sh
 # All rights reserved.
 #
 # Redistribution and use of this script, with or without modification, is
